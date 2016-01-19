@@ -16,6 +16,7 @@
   "rules": {
     "semi" : [2, "always"],
     "padded-blocks" : 0,
-    "space-before-function-paren" : 0
+    "space-before-function-paren" : 0,
+    "new-cap" : [2, {"newIsCapExceptions": ["worker", "scheduler", "queue"]}]
   }
 }
