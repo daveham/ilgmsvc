@@ -6,15 +6,13 @@ const jobs = {
     },
     perform: (a, b, callback) => {
       setTimeout(() => {
-        const answer = a + b;
-        callback(null, answer);
+        callback(null, a + b);
       }, 1000);
     }
   },
   subtract: {
     perform: (a, b, callback) => {
-      const answer = a - b;
-      callback(null, answer);
+      callback(null, a - b);
     }
   }
 };
