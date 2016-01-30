@@ -1,5 +1,5 @@
-import debugLib from 'debug';
-const debug = debugLib('app:scheduler');
+import _debug from 'debug';
+const debug = _debug('svc:scheduler');
 
 import { scheduler as Scheduler } from 'node-resque';
 
@@ -16,9 +16,9 @@ const start = (connection, cb) => {
 
   scheduler.connect(() => {
     scheduler.start();
+    cb(scheduler);
   });
 
-  cb(scheduler);
 };
 
 export default start;

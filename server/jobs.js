@@ -1,9 +1,9 @@
 const jobs = {
   add: {
-    plugins: [ 'jobLock' ],
-    pluginOptions: {
-      jobLock: {}
-    },
+//    plugins: [ 'jobLock' ],
+//    pluginOptions: {
+//      jobLock: {}
+//    },
     perform: (a, b, callback) => {
       setTimeout(() => {
         callback(null, a + b);

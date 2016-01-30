@@ -1,5 +1,5 @@
-import debugLib from 'debug';
-const debug = debugLib('app:worker');
+import _debug from 'debug';
+const debug = _debug('svc:worker');
 
 import { worker as Worker } from 'node-resque';
 
@@ -9,15 +9,15 @@ const start = (connection, queues, scheduler, jobs, jobCount, cb) => {
   const worker = new Worker({connection, queues}, jobs);
 
   const shutdown = () => {
-    if (jobsToComplete <= 0) {
-      setTimeout(() => {
-        scheduler.end(() => {
-          worker.end(() => {
-            cb();
-          });
-        });
-      }, 500);
-    }
+    // if (jobsToComplete <= 0) {
+    //   setTimeout(() => {
+    //     scheduler.end(() => {
+    //       worker.end(() => {
+    //         cb();
+    //       });
+    //     });
+    //   }, 500);
+    // }
   };
 
   worker.on('start', () => { debug('started'); });
