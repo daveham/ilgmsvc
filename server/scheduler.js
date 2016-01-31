@@ -8,7 +8,7 @@ const start = (connection, cb) => {
 
   scheduler.on('start', () => { debug('started'); });
   scheduler.on('end', () => { debug('ended'); });
-  scheduler.on('poll', () => { debug('polling'); });
+  // scheduler.on('poll', () => { debug('polling'); });
   scheduler.on('master', (state) => { debug('became master'); });
   scheduler.on('error', (error) => { debug(`error >> ${error}`); });
   scheduler.on('working_timestamp', (timestamp) => { debug(`working timestamp ${timestamp}`); });

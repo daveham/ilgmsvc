@@ -23,7 +23,7 @@ const start = (connection, queues, scheduler, jobs, jobCount, cb) => {
   worker.on('start', () => { debug('started'); });
   worker.on('end', () => { debug('ended'); });
   worker.on('cleaning_worker', (worker, pid) => { debug(`cleaning old worker ${worker}`); });
-  worker.on('poll', (queue) => { debug(`polling ${queue}`); });
+  // worker.on('poll', (queue) => { debug(`polling ${queue}`); });
   worker.on('job', (queue, job) => { debug(`job ${queue} ${JSON.stringify(job)}`); });
   worker.on('reEnqueue', (queue, job, plugin) => { debug(`reEnqueue job (${plugin}) ${queue} ${JSON.stringify(job)}`); });
 
@@ -44,7 +44,7 @@ const start = (connection, queues, scheduler, jobs, jobCount, cb) => {
   );
 
   worker.on('error', (queue, job, error) => { debug(`error ${queue} ${JSON.stringify(job)} >> ${error}`); });
-  worker.on('pause', () => { debug('paused'); });
+  // worker.on('pause', () => { debug('paused'); });
 
   worker.connect(() => {
     worker.workerCleanup(); // optional: cleanup any previous improperly shutdown workers on this host
