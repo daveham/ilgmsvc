@@ -15,9 +15,16 @@ io.on('connection', socket => {
     debug('a user disconnected');
   });
 
-  socket.on('my-message-ping', msg => {
+  socket.on('il-ping', msg => {
     debug('>>> message: ', msg);
-    socket.emit('my-message-pong', { data: 'pong' });
+    if (msg === 'socket') {
+      socket.emit('il-pong', { status: 'complete' });
+    } else {
+      socket.emit('il-pong', { status: 'submitted' });
+      setTimeout(() => {
+        socket.emit('il-pong', { status: 'complete' });
+      }, 3000);
+    }
   });
 });
 
