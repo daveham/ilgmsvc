@@ -11,6 +11,8 @@ const io = socketio(httpServer);
 io.on('connection', socket => {
   debug('a user connected');
 
+  app.set('socket', socket);
+
   socket.on('disconnect', () => {
     debug('a user disconnected');
   });
