@@ -4,18 +4,18 @@ import _debug from 'debug';
 const debug = _debug('svc:jobs');
 
 const jobs = {
-  add: {
-//    plugins: [ 'jobLock' ],
-//    pluginOptions: {
-//      jobLock: {}
-//    },
-    perform: (a, b, callback) => {
-      debug('job add perform');
+  ping: {
+    perform: (callback) => {
       if (app) {
         const socket = app.get('socket');
         socket.emit('il-pong', { status: 'task complete' });
       }
-
+      callback();
+    }
+  },
+  add: {
+    perform: (a, b, callback) => {
+      debug('add');
       setTimeout(() => {
         callback(null, a + b);
       }, 1000);
@@ -23,6 +23,7 @@ const jobs = {
   },
   subtract: {
     perform: (a, b, callback) => {
+      debug('subtract');
       callback(null, a - b);
     }
   }
