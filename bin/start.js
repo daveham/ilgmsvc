@@ -9,24 +9,17 @@ const httpServer = http.Server(app);
 
 const io = socketio(httpServer);
 io.on('connection', socket => {
-  debug('a user connected');
+  debug('user connected');
 
   app.set('socket', socket);
 
   socket.on('disconnect', () => {
-    debug('a user disconnected');
+    debug('user disconnected');
   });
 
-  socket.on('il-ping', msg => {
-    debug('>>> message: ', msg);
-    if (msg === 'socket') {
-      socket.emit('il-pong', { status: 'complete' });
-    } else {
-      socket.emit('il-pong', { status: 'submitted' });
-      setTimeout(() => {
-        socket.emit('il-pong', { status: 'complete' });
-      }, 3000);
-    }
+  socket.on('il-ping', () => {
+    debug('ping');
+    socket.emit('il-pong');
   });
 });
 
@@ -35,4 +28,9 @@ const port = config.server_port;
 
 httpServer.listen(port, host, () => {
   debug(`Server is now running at ${host}:${port}.`);
+});
+
+import startTaskService from 'task-service';
+startTaskService(() => {
+  debug('Task service is running.');
 });

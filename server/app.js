@@ -8,7 +8,6 @@ const app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const paths = config.utils_paths;
 
 const router = express.Router();
 router.get('/status', (req, res) => {
@@ -16,9 +15,7 @@ router.get('/status', (req, res) => {
 });
 app.use(router);
 
+const paths = config.utils_paths;
 app.use(express.static(paths.base(config.dir_dist)));
-
-import test from 'test';
-test();
 
 export default app;
